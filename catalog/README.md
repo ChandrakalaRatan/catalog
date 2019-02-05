@@ -118,7 +118,7 @@ The following are open to the public:
 	#### /catalog/category/<int:category_id>/item/<int:item_id>/JSON
 
 ## JSON end points to display all items belongs to a specific user in the catalog
-    	#### /catalog/user/<user_id>/items/JSON
+	#### /catalog/user/<user_id>/items/JSON
  
 ## JSON end points to display all user
    	#### /catalog/users/JSON
