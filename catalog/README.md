@@ -1,12 +1,12 @@
 # Item Catalog Project
 
-Item Catalog project is a web application developed by utilizing the Flask framework which accesses a SQL database to populate data. It also uses third party authentication like OAuth2 for google and facebook application.
+Item Catalog project is a web application developed by utilizing the Flask framework which accesses a SQL database to populate data. It also uses third party authentication like  google and facebook application.
 
 # About
 This application provides Women Exclusive Store details that stores the details of women's clothing and accessories. Currently it contains 6 categories. The user can login via Facebook or google in order to create new Items. They can create, edit and delete the data if they are logged in. It also restricts from deleting other's data.
 
 # Features
-	Google and facebook oauth authentication and authorisation check.
+	Google and facebook authentication and authorisation check.
 	Full CRUD support using SQLAlchemy and Flask framework.
 	JSON endpoints.
 
@@ -14,47 +14,57 @@ This application provides Women Exclusive Store details that stores the details 
 	.
 	├── g_client_secrets.json
 	├── fb_client_secrets.json
-	├── database_setup.py
-	├── populate_data.py
+	├── catalog.ini
+	├── catalog.wsgi
 	├── womenswearcatalog.db
-	├── views.py
+	├── application.py
 	├── README.md
-	├── item_images
-	├── static
-	│   └── css 
-	│       └── cssstyle.css
-	│   └── js
-	│       └── js.cookie-2.0.4.min.js
-	│   └── mdl
-	│       └── material.css
-	│       └── material.js
-	│       └── material.min.css
-	│       └── material.min.css.map
-	│       └── material.min.js
-	│       └── material.min.js.map
-	└── templates
-		├── add_item_button.html
-		├── catalog_homepage.html
-		├── create_new_item.html
-		├── delete_item.html
-		├── edit_item.html
-		├── layout.html
-		├── login.html
-	    ├── show_catalog_item.html
-	    ├── show_item.html
-	    ├── show_my_catalog_items.html
-
+	├── requirements.txt
+	├── Vagrantfile
+	├── catalog
+		├── database_setup.py
+		├── dbconnect.py
+		├──  __init__.py
+		├── json_endpoints.py
+		├── Oauth.py
+		├── populate_data.py
+		├── views.py
+		├── static
+		│   ├── css
+		│   │   └──cssstyle.css
+		│   ├── js
+		│   │   └──js.cookie-2.0.4.min.js
+		│   └── mdl
+		│       ├── material.css
+		│       ├── material.js
+		│       ├── material.min.css
+		│       ├── material.min.css.map
+		│       ├── material.min.js
+		│       └──material.min.js.map
+		└── templates
+			├── add_item_button.html
+			├── catalog_homepage.html
+			├── create_new_item.html
+			├── delete_item.html
+			├── edit_item.html
+			├── layout.html
+			├── login.html
+        		├── show_catalog_item.html
+        		├── show_item.html
+        		└── show_my_catalog_items.html
+		
+		
 # Required Libraries and Dependencies
 The project code requires the following software:
 
-	Python 2.7.x
-	SQLAlchemy 0.8.4 or higher (a Python SQL toolkit)
-	Flask 0.10.1 or higher (a web development microframework)
-	HTML, CSS, Bootstrap, SQLite
+	#### Python 2.7.x
+	#### SQLAlchemy 0.8.4 or higher (a Python SQL toolkit)
+	#### Flask 0.10.1 or higher (a web development microframework)
+	#### HTML, CSS, Bootstrap, SQLite
 
 The following Python packages:
-	requests
-	httplib2
+	#### requests
+	#### httplib2
 
 # How to Run the Project
 
@@ -68,58 +78,47 @@ The following Python packages:
 
 	5. Open terminal, and type
 
-	   vagrant up
-	   
-	   This will cause Vagrant to download the Ubuntu operating system and install it. This may take quite a while depending on how fast your Internet connection is.
+	   #### vagrant up
 
-	6. After the above command succeeds, connect to the newly created VM by typing the following command:
+	   This will cause Vagrant to download the Ubuntu operating system and 
+       install it. This may take quite a while depending on how fast your 
+       Internet connection is.
 
-	 	vagrant ssh
+	6. After the above command succeeds, connect to the newly created VM 
+      by typing the following command:
 
-		Type cd /vagrant/ to navigate to the shared repository.
+	 	#### vagrant ssh
 
-	7. Download or clone this repository, and navigate to it.
+	7. Go to the project directory
+        
+	    	#### cd /vagrant/ to navigate to the shared repository.
 
-	8. Install or upgrade Flask:
+	8. Download or clone this repository, and navigate to it.
 
-		sudo python3 -m pip install --upgrade flask
+	9. Run the following command to install depedencies
+	     	
+		#### pip  install  -r  requirements.txt
 
-	9. Install httplib2
-		sudo pip install httplib2
+	10. Run the following command to run the application:
 
-	10. Install request package
+		#### python application.py
 
-		sudo pip install requests
-
-	11. Run the following command to set up the database:
-
-		python database_setup.py
-
-	12. Run the following command to populate some data in the database
-
-	    python populate_data.py
-
-	    This will create a file called womenswearcatalog.db in the catalog folder
-
-	13. Run this application
-
-		python3 views.py
-
-	14. Open http://localhost:5000/ in your favourite Web browser.
+	11. Open http://localhost:5000/ in your favourite Web browser.
 
 # JSON Endpoints
 The following are open to the public:
 
-## Returns the whole catalog. It displays all items belongs to all catagory
-  /items/JSON - 
+## JSON end points to display all items in all catalog
+	#### /catalog/JSON
 
-## Returns all items belongs to a specific category
-   /<int:category_id>/items/JSON
+## JSON end points to display all items belongs to a specific category in the catalog
+   	#### /catalog/category/<category_id>/items/JSON
 
-## Returns all items belongs to a specific user
-  /items/<user_id>/JSON 
-  - 
-## Displays all user details
-   /users/JSON 
+## JSON end points to display specific item belong to a specific category in the catalog.
+	#### /catalog/category/<int:category_id>/item/<int:item_id>/JSON
 
-
+## JSON end points to display all items belongs to a specific user in the catalog
+    	#### /catalog/user/<user_id>/items/JSON
+ 
+## JSON end points to display all user
+   	#### /catalog/users/JSON
